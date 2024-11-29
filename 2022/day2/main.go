@@ -1,34 +1,14 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
 	"os"
 	"strings"
+
+	"entual.de/adventofcode/utils"
 )
 
-func readFile(fileName string) ([]string, error) {
-
-	input := []string{}
-
-	// Datei öffnen
-	file, err := os.Open(fileName)
-	if err != nil {
-		return input, fmt.Errorf("Fehler beim Öffnen der Datei: %s", fileName)
-	}
-	defer file.Close()
-
-	// Scanner für das Einlesen zeilenweise
-	scanner := bufio.NewScanner(file)
-
-	for scanner.Scan() {
-		// Gelesene Zeile holen
-		line := strings.TrimSpace(scanner.Text())
-		input = append(input, line)
-	}
-
-	return input, nil
-}
+//////////// Daily Code here /////////////
 
 type t_round struct {
 	opponent string
@@ -196,34 +176,22 @@ func part2(input []string) {
 	fmt.Println(sum)
 }
 
+////////// Main Function ///////////
+
 func main() {
 
-	fmt.Println(os.Args)
-	// Prüfen, ob ein Argument übergeben wurde
-	if len(os.Args) != 3 {
-		fmt.Println("Bitte einen Modus angeben: train oder run + part1 oder part2")
-		return
-	}
-
-	// Parameter lesen
-	mode := os.Args[1]
-	part := os.Args[2]
-	var fileName string
-
-	// Datei basierend auf dem Modus auswählen
-	if mode == "train" {
-		fileName = "data_small.dat"
-	} else if mode == "run" {
-		fileName = "data_big.dat"
-	} else {
-		fmt.Println("Ungültiger Modus. Verwenden Sie 'train' oder 'run'.")
+	// Abfrage Inputparameter
+	fileName, part, err := utils.Initializer(os.Args)
+	if err != nil {
+		fmt.Printf("Fehler: %s\n", err)
 		return
 	}
 
 	// Datei einlesen
-	input, err := readFile(fileName)
+	input, err := utils.ReadFile(fileName)
 	if err != nil {
 		fmt.Printf("Fehler: %s\n", err)
+		return
 	}
 
 	if part == "part1" {
