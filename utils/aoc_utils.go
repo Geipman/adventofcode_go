@@ -5,7 +5,6 @@ import (
 	"errors"
 	"fmt"
 	"os"
-	"strings"
 )
 
 func Initializer(args []string) (string, string, error) {
@@ -49,7 +48,8 @@ func ReadFile(fileName string) ([]string, error) {
 
 	for scanner.Scan() {
 		// Gelesene Zeile holen
-		line := strings.TrimSpace(scanner.Text())
+		// line := strings.TrimSpace(scanner.Text())
+		line := scanner.Text()
 		input = append(input, line)
 	}
 
