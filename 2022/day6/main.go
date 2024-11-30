@@ -17,8 +17,6 @@ func part1(input []string) {
 	index := 0
 	marker := 4
 
-	// mjqjpqmgbljsphdztnvjfqwrcgsmlb
-
 	for i := 0; i < len(datastream); i++ {
 		index = i
 
@@ -51,8 +49,6 @@ func part2(input []string) {
 	charMap := make(map[string]int)
 	index := 0
 	marker := 14
-
-	// mjqjpqmgbljsphdztnvjfqwrcgsmlb
 
 	for i := 0; i < len(datastream); i++ {
 		index = i
